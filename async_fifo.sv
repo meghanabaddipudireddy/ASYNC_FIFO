@@ -67,7 +67,7 @@ module async_fifo #(parameter FIFO_DEPTH = 8, parameter DATA_WIDTH = 32) (
   end
   
   assign empty = (wq2_rptr == read_gray_pointer);
-  assign full  = (rq2_wptr == {~write_gray_pointer[FIFO_DEPTH_LOG], 
-                               write_gray_pointer[FIFO_DEPTH_LOG-1:0]});
-
+  assign full = (write_gray_pointer[FIFO_DEPTH_LOG] != rq2_wptr[FIFO_DEPTH_LOG])   &&
+              (write_gray_pointer[FIFO_DEPTH_LOG-1] != rq2_wptr[FIFO_DEPTH_LOG-1]) &&
+              (write_gray_pointer[FIFO_DEPTH_LOG-2:0] == rq2_wptr[FIFO_DEPTH_LOG-2:0]);
 endmodule
