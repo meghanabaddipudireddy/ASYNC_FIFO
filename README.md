@@ -49,27 +49,7 @@ The async FIFO solves this by:
 ## 2. Architecture and Datapath
 
 The design is split cleanly into two independent clock domains with a shared memory array between them.
-
-```
-WRITE DOMAIN (wr_clk)          SHARED          READ DOMAIN (rd_clk)
-                               MEMORY
-wr_data ──→ mem[wr_ptr] ──→ [  FIFO  ] ──→ rd_data = mem[rd_ptr]
-               ↑             [  ARRAY ]              ↑
-            wr_ptr                                rd_ptr
-               │                                    │
-               ↓                                    ↓
-        binary→gray                          binary→gray
-               │                                    │
-               ↓                                    ↓
-        2-flop sync                          2-flop sync
-        (rd_clk)                             (wr_clk)
-               │                                    │
-               ↓                                    ↓
-           wq2_rptr                            rq2_wptr
-               │                                    │
-               ↓                                    ↓
-           EMPTY flag                           FULL flag
-```
+![FIFO Architecture](async_fifo_design.pdf)
 
 ### Key design decision — data never crosses the clock boundary
 
