@@ -48,6 +48,7 @@ module async_fifo #(parameter FIFO_DEPTH = 8, parameter DATA_WIDTH = 32) (
     if(!rd_rst) begin
       wq1_rptr <= 0;
       wq2_rptr <= 0;
+    end
     else begin
       wq1_rptr <= write_gray_pointer; 
       wq2_rptr <= wq1_rptr;
@@ -60,6 +61,7 @@ module async_fifo #(parameter FIFO_DEPTH = 8, parameter DATA_WIDTH = 32) (
     if(!wr_rst) begin
       rq1_wptr <= 0;
       rq2_wptr <= 0;
+    end
     else begin
       rq1_wptr <= read_gray_pointer; 
       rq2_wptr <= rq1_wptr;
