@@ -223,7 +223,11 @@ Testbench covers:
 - Continuous SVA assertion: `full && empty` can never both be true
 
 ---
+## Synthesis and Implementation
 
+Synthesis and Implementation was run to target the AC701 Artix-7 FPGA on Vivado. When it ran, 91 LUTs and 280 FFs were used. There are 256 FFs used just for memory, so around 24 FF come from BRAM. It runs at 244 MHz. 
+
+---
 ## References
 
 - Clifford Cummings — "Simulation and Synthesis Techniques for Asynchronous FIFO Design" (sunburst-design.com) — the industry standard reference for this design pattern
